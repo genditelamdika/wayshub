@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "Teguh predtor",
+      "image": "bri.jp",
+      "Day": "26/Hari"
+    },
+    {
+      "id": 2,
+      "name": "saya",
+      "image": "bri.jpg",
+      "Day": "26/Hari"
+    },
+    {
+      "id": 3,
+      "name": "robot",
+      "image": "bni.jpg",
+      "Day": "26/Hari"
+    },
+    {
+      "id": 4,
+      "name": "predator",
+      "image": "danamon.jpg",
+      "Day": "0/Hari"
+    },
+    {
+      "id": 5,
+      "name": "Amerika",
+      "image": "bri.jpg",
+      "Day": "0/Hari"
+    },
+    {
+      "id": 6,
+      "name": "bangsat",
+      "image": "bca.jpg",
+      "Day": "0/Hari"
+    }
+  ]
