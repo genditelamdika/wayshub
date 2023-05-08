@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 	dto "wayshub/dto/result"
 	videosdto "wayshub/dto/video"
 	"wayshub/models"
@@ -39,6 +40,16 @@ func (h *handlervideo) FindVideo(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: videos})
 }
 
+func (h *handlervideo) FindVideoByUser(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+	videos, err := h.VideoRepository.FindVideoByUser(id)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: videos})
+}
+
 func (h *handlervideo) GetVideo(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 
@@ -48,7 +59,7 @@ func (h *handlervideo) GetVideo(c echo.Context) error {
 	}
 	// video.Thumbnail = path_file + video.Thumbnail
 
-	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: convertResponsevideo(video)})
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: video})
 }
 func (h *handlervideo) CreateVideo(c echo.Context) error {
 	// get the datafile here
@@ -97,8 +108,12 @@ func (h *handlervideo) CreateVideo(c echo.Context) error {
 		Description: request.Description,
 		Video:       resp2.SecureURL,
 		ViewCount:   request.ViewCount,
-		UserID:      request.UserID,
+		CreatedAt:   time.Now(),
+
+		UserID: request.UserID,
+		User:   request.User,
 	}
+	video.FormatTime = video.CreatedAt.Format("2 Jan 2006")
 
 	video, err = h.VideoRepository.CreateVideo(video)
 	if err != nil {
@@ -117,15 +132,29 @@ func (h *handlervideo) UpdateVideo(c echo.Context) error {
 	// }
 	dataFile := c.Get("dataFile").(string)
 	fmt.Println("this is data file", dataFile)
+	dataVideo := c.Get("dataVideo").(string)
+	fmt.Println("this is data file", dataVideo)
+	var ctx = context.Background()
+	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+	var API_KEY = os.Getenv("API_KEY")
+	var API_SECRET = os.Getenv("API_SECRET")
+
+	// Add your Cloudinary credentials ...
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+
+	// Upload file to Cloudinary ...
+	resp11, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "uploads"})
+	resp2, err := cld.Upload.Upload(ctx, dataVideo, uploader.UploadParams{Folder: "uploads"})
 
 	ViewCount, _ := strconv.Atoi(c.FormValue("viewcount"))
 
-	request := videosdto.VideoResponse{
-		Title: c.FormValue("title"),
-
-		Thumbnail:   dataFile,
+	request := videosdto.UpdateVideoRequest{
+		Title:       c.FormValue("title"),
+		Thumbnail:   resp11.SecureURL,
 		Description: c.FormValue("description"),
+		Video:       resp2.SecureURL,
 		ViewCount:   ViewCount,
+		// User:   c.FormValue("user"),
 	}
 
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -146,6 +175,9 @@ func (h *handlervideo) UpdateVideo(c echo.Context) error {
 		video.ViewCount = request.ViewCount
 	}
 
+	if request.Video != "" {
+		video.Video = request.Video
+	}
 	if request.Description != "" {
 		video.Description = request.Description
 	}
@@ -172,6 +204,23 @@ func (h *handlervideo) DeleteVideo(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: convertResponsevideo(data)})
+}
+func (h *handlervideo) UpdateViews(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	video, err := h.VideoRepository.GetVideo(int(id))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
+	}
+
+	video.ViewCount = video.ViewCount + 1
+
+	data, err := h.VideoRepository.UpdateViews(video)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: data})
 }
 
 func convertResponsevideo(u models.Video) models.Video {

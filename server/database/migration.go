@@ -11,6 +11,7 @@ func RunMigration() {
 		&models.User{},
 		&models.Video{},
 		&models.Comment{},
+		&models.Subscribe{},
 	)
 
 	if err != nil {

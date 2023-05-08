@@ -18,4 +18,7 @@ func UserRoutes(e *echo.Group) {
 	// e.POST("/user", h.CreateUser)
 	e.PATCH("/user/:id", middleware.UploadFile(middleware.UploadFhoto(h.UpdateUser)))
 	e.DELETE("/user/:id", h.DeleteUser)
+
+	e.PATCH("/plusSubs/:id", h.PlusSubscriber, middleware.Auth)
+	e.PATCH("/minusSubs/:id", h.MinusSubscriber, middleware.Auth)
 }

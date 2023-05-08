@@ -9,5 +9,7 @@ type Comment struct {
 	UserID    int       `json:"user_id"`
 	User      User      `json:"user" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 	VideoID   int       `json:"video_id"`
+	Video     Video     `json:"video"`
+	// Comment     []Comment `json:"comment" `
 	// Video     string    `json:"video" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }

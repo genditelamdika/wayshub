@@ -20,14 +20,14 @@ func RepositoryComment(db *gorm.DB) *repository {
 
 func (r *repository) FindComment() ([]models.Comment, error) {
 	var comments []models.Comment
-	err := r.db.Find(&comments).Error
+	err := r.db.Preload("Video").Preload("User").Find(&comments).Error
 
 	return comments, err
 }
 
 func (r *repository) GetComment(ID int) (models.Comment, error) {
 	var comment models.Comment
-	err := r.db.Preload("User").First(&comment, ID).Error
+	err := r.db.Preload("Video").Preload("User").First(&comment, ID).Error
 
 	return comment, err
 }

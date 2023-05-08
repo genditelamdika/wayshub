@@ -4,10 +4,17 @@ import Navbars from "./components/Navbars";
 import Login from "./components/Login";
 import { API, setAuthToken } from './config/api';
 import Register from "./components/Register";
+import Detailvideo from "./components/Detailvideo";
+import Sidedetailvideo from "./components/Sidedetailvideo";
+import Mychanel from "./components/Mychanel";
+import Editchanel from "./components/Editchanel";
 import Menbar from "./components/Menbar";
 import Home from "./components/Home";
+// import Mychanel from "./components/Mychanel";
+import AddVideo from "./components/AddVideo";
 import { UserContext } from "./context/userContext";
 import { useContext, useEffect, useState } from "react";
+import Creatorpage from "./components/Creatorpage";
 
 
 
@@ -23,7 +30,7 @@ function App() {
     if (!isLoading) {
       if (state.isLogin === true) {
         // window.location('/Film')
-        navigate('/Login');
+        navigate('/');
       }
     }
   }, [isLoading]);
@@ -62,16 +69,24 @@ function App() {
 
   
   return (
-    <div>
+
         <>
-        {/* <Navbars />
-      <Menbar > */}
       <Container>
+        {/* <Navbars />
+      <Menbar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="AddVideo" element={<AddVideo />} />
+          {/* <Route path="Mychane" element={<Mychanel />} /> */}
+          <Route path="/Detailvideo/:id" element={<Detailvideo />} />
+          <Route path="/Sidedetailvideo/:id" element={<Sidedetailvideo />} />
+          <Route path="Mychanel" element={<Mychanel />} />
+          <Route path="/Editchanel/:id" element={<Editchanel />} />
+          <Route path="/Creatorpage/:id" element={<Creatorpage />} />
+
         </Routes>
       </Container>
-      {/* </Menbar> */}
+
 
       <Routes>
         <Route path="Login" element={<Login />} />
@@ -80,8 +95,7 @@ function App() {
 
 
         </>
-{/* )  } */}
-    </div>
+
   )
 }
 

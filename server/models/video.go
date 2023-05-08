@@ -10,6 +10,8 @@ type Video struct {
 	Video       string    `gorm:"type: varchar(255)" json:"video"`
 	UserID      int       `json:"user_id"`
 	User        User      `json:"user"` // the associated Channel struct
+	Comment     []Comment `json:"comment" `
+	FormatTime  string    `json:"formatTime" gorm:"type: varchar(255)"`
 	CreatedAt   time.Time `json:"-"`
 	ViewCount   int       `json:"viewcount" form:"viewcount" gorm:"type: int"`
 }

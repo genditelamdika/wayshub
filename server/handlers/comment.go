@@ -9,6 +9,7 @@ import (
 	"wayshub/repositories"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/labstack/echo/v4"
 )
 
@@ -43,9 +44,12 @@ func (h *handlercomment) GetComment(c echo.Context) error {
 	}
 	// comment.Thumbnail = path_file + comment.Thumbnail
 
-	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: convertResponsecomment(comment)})
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: comment})
 }
 func (h *handlercomment) CreateComment(c echo.Context) error {
+	userLogin := c.Get("userLogin")
+	userId := userLogin.(jwt.MapClaims)["id"].(float64)
+
 	request := new(commentsdto.CreateCommentRequest)
 	if err := c.Bind(request); err != nil {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
@@ -60,7 +64,7 @@ func (h *handlercomment) CreateComment(c echo.Context) error {
 
 	comment := models.Comment{
 		Comment: request.Comment,
-		UserID:  request.UserID,
+		UserID:  int(userId),
 		// User:    request.User,
 		VideoID: request.VideoID,
 	}

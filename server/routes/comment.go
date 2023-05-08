@@ -2,6 +2,7 @@ package routes
 
 import (
 	"wayshub/handlers"
+	"wayshub/pkg/middleware"
 	"wayshub/pkg/mysql"
 	"wayshub/repositories"
 
@@ -14,7 +15,7 @@ func CommentRoutes(e *echo.Group) {
 
 	e.GET("/comments", h.FindComment)
 	e.GET("/comment/:id", h.GetComment)
-	e.POST("/comment", h.CreateComment)
+	e.POST("/comment", middleware.Auth(h.CreateComment))
 	e.PATCH("/comment/:id", h.UpdateComment)
 	e.DELETE("/comment/:id", h.DeleteComment)
 }

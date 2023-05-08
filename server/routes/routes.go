@@ -7,5 +7,6 @@ func RouteInit(e *echo.Group) {
 	AuthRoutes(e)
 	VideoRoutes(e)
 	CommentRoutes(e)
+	SubcribeRoutes(e)
 
 }
