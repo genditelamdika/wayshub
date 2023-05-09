@@ -83,7 +83,7 @@ function Detailvideo() {
             const response = await API.post("/comment", formData, config);
             console.log("add video success : ", response);
             MySwal.fire({
-              title: <strong>Add Film Success</strong>,
+              title: <strong>comentar yang bener</strong>,
               html: <i>You clicked the button!</i>,
               icon: 'success'
             })
