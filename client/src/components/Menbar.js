@@ -15,6 +15,7 @@ import {
 }from "react-icons/fa";
 import '../App.css';
 import WaysHubIcon from "../image/logoways.png";
+import WaysHubIcon1 from "../image/WaysHubIcon.png";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Card, Image, Stack } from 'react-bootstrap';
 
@@ -37,7 +38,7 @@ const Menbar = ({children}) => {
             icon:<FaTh/>
         },
         {
-            path:"/about",
+            path:"/Subscrebtion",
             name:"Subcription",
             icon:<FaUserAlt/>
         },
@@ -47,21 +48,21 @@ const Menbar = ({children}) => {
         <div className="container" >
            <div style={{width: isOpen ? "200px" : "50px", position:"fixed"}} className="sidebar">
                <div className="top_section">
-                   <h1 style={{display: isOpen ? "block" : "none"}} className="logo">Logo</h1>
+                   <Image src={WaysHubIcon1}  style={{display: isOpen ? "block" : "none", width:"100px"}} className="logo"></Image >
                    <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
                        <FaBars onClick={toggle}/>
                    </div>
                </div>
                {
                    menuItem.map((item, index)=>(
-                       <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                       <NavLink to={item.path} key={index} className="link" activeclassName="active" style={{marginTop:"50px"}}>
                            <div className="icon">{item.icon}</div>
-                           <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
+                           <div style={{display: isOpen ? "block" : "none",paddingBottom:"30px"}} className="link_text">{item.name}</div>
                        </NavLink>
                    ))
                }
            <div>
-                <Card.Text  style={{display: isOpen ? "block" : "none"}} className="text-white fs-4">Channel</Card.Text>
+                <Card.Text  style={{display: isOpen ? "block" : "none",marginTop:"100px"}} className="text-white fs-4">Channel</Card.Text>
            {users?.slice(0, 4).map((data) => (
              <Link to={`/Creatorpage/${data.id}`}
              direction="horizontal"

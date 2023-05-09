@@ -2,6 +2,8 @@ import { Card, Col, Image, Row, Stack } from "react-bootstrap";
 import { useQuery } from "react-query";
 import {Link, useNavigate } from "react-router-dom";
 import { API } from "../config/api";
+import view1 from "../image/view1.png";
+import waktu from "../image/waktu.png";
 
 function Sidevideo() {
     let navigate = useNavigate();
@@ -24,7 +26,7 @@ function Sidevideo() {
       
     return (
         <>
-      <Stack direction="Vertical" gap={4} className="ps-3 pe-5 mb-3">
+      <Stack direction="Vertical" gap={4} className="ps-3 pe-5 mb-3" style={{textDecoration:"none"}}>
         {videos?.slice(0, 5).map((item) => (
           <Link onClick={() => handleViewCounter(item?.id)} to={`/Sidedetailvideo/${item.id}`}
             direction="vertical"
@@ -33,17 +35,17 @@ function Sidevideo() {
           
           >
             <Image src={item.thumbnail} className="mb-2" style={{height:"100px", width:"250px"}} />
-            <Card.Text className="text-white mb-3" style={{ fontSize: "15px" }}>
+            <Card.Text className="text-white mb-3 text-decoration-none " style={{ fontSize: "15px" , textDecoration:"none"}}>
               {item.title}
             </Card.Text>
-            <Card.Text className="fs-6 mb-2" style={{ color: "#555555" }}>
-              {item.chanelname}
+            <Card.Text className="fs-6 mb-2 text-decoration-none " style={{ color: "#555555" }}>
+              {item.user.chanelname}
             </Card.Text>
             <Row>
               <Col md={4}>
                 <Stack direction="horizontal">
                   <div className="d-flex flex-column justify-content-center me-2">
-                    {/* <Image src={ViewsIcon} /> */}
+                    <Image src={view1} />
                   </div>
                   <Card.Text className="fs-6" style={{ color: "#555555" }}>
                     {item.viewcount}
@@ -53,10 +55,10 @@ function Sidevideo() {
               <Col>
                 <Stack direction="horizontal">
                   <div className="d-flex flex-column justify-content-center me-2">
-                    {/* <Image src={DateIcon} /> */}
+                    <Image src={waktu} />
                   </div>
                   <Card.Text className="fs-6" style={{ color: "#555555" }}>
-                    {/* {item.created_at.slice(0, 10)} */}
+                    {item.formatTime}
                   </Card.Text>
                 </Stack>
               </Col>

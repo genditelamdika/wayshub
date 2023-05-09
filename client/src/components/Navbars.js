@@ -88,7 +88,7 @@ function Navbars(){
                 alt="gam"
               />
             </Dropdown.Toggle>
-            <Dropdown.Menu className="bg-dark mt-3 ms-3">
+            <Dropdown.Menu className="bg-dark mt-2 ms-3">
               <div
                 style={{
                   position: "absolute",
@@ -111,7 +111,7 @@ function Navbars(){
                       className="bg-dark text-white fw-semibold text-decoration-none"
                     >
                       <CgProfile
-                        color="red"
+                        color="yellow"
                         style={{ fontSize: "20px" }}
                         className="me-2"
                       />
@@ -123,7 +123,7 @@ function Navbars(){
                     className="bg-dark d-flex align-items-center gap-2 text-white fw-semibold"
                     onClick={logout}
                   >
-                    <MdLogout color="red" style={{ fontSize: "20px" }} />
+                    <MdLogout color="yellow" style={{ fontSize: "20px" }} />
                     Logout
                   </Dropdown.Item>
                 </>

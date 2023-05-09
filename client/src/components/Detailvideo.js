@@ -2,6 +2,8 @@ import Menbar from "./Menbar"
 import Navbars from "../components/Navbars";
 import Sidevideo from "../components/Sidevideo";
 import Button from "react-bootstrap/Button";
+import view1 from "../image/view1.png";
+import waktu from "../image/waktu.png";
 import UserIcon1 from "../image/UserIcon1.png";
 // import Menbar from "../components/Menbar";
 import { useMutation, useQuery } from "react-query";
@@ -122,13 +124,13 @@ function Detailvideo() {
           <div className="d-flex gap-5" style={{paddingBottom:"50px"}}>
                                         <div className="d-flex gap-2" style={{color: "white"}}>
                                             <div>
-                                                {/* <img width={15} src={View} alt="" /> */}
+                                                <img width={15} src={view1} alt="" />
                                             </div>
                                             <span>{video?.viewcount}</span>
                                         </div>
                                         <div className="d-flex gap-2" style={{color: "white"}}>
                                             <div>
-                                                {/* <img width={15} src={Dur} alt="" /> */}
+                                                <img width={15} src={waktu} alt="" />
                                             </div>
                                             <span>{video?.formatTime}</span>
                                         </div>
@@ -205,13 +207,17 @@ function Detailvideo() {
           </div>
           <div>
         {allComents?.map((data) => (
-          <div style={{color:"white", marginLeft:"0px", paddingTop:"10px"}}>
+          <div style={{color:"white", marginLeft:"0px", paddingTop:"20px"}}>
            <Image
           //  style={{marginLeft:"200px"}}
            
            src={data?.user.fhoto}
-           /> 
+           style={{width:"30px"}}
+           />
+           
             {data?.comment}
+            
+            
 
           </div>
 

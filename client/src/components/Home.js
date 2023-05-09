@@ -43,7 +43,7 @@ function Home() {
         </div>
       </>
       <>
-        <Row xs={4} md={4} className="g-4" style={{marginTop:"100px",marginLeft:"200px"}}>
+        <Row xs={3} md={4} className="g-4" style={{marginTop:"100px",marginLeft:"200px"}}>
           {videos?.map((item, idx) => (
                           <Link onClick={() => handleViewCounter(item?.id)}
                           className="text-decoration-none "
@@ -55,7 +55,7 @@ function Home() {
                 <Card.Body>
                   <Card.Title style={{color:"white"}}>{item.title}</Card.Title>
                   <Card.Title   style={{
-                    fontSize:"16px",
+                    fontSize:"14px",
                     textDecoration: 'none',
                     cursor: 'pointer',
                     color: '#555555'
@@ -72,13 +72,13 @@ function Home() {
                   <div className="d-flex gap-5">
                                         <div className="d-flex gap-2">
                                             <div>
-                                                <img width={15} src={view1} alt="" />
+                                                <img width={13} src={view1} alt="" />
                                             </div>
                                             <span style={{fontSize:"13px",  color: '#555555'}}>{item?.viewcount}</span>
                                         </div>
                                         <div className="d-flex gap-2">
                                             <div>
-                                                <img width={15} src={waktu} alt="" />
+                                                <img width={13}  src={waktu} alt="" />
                                             </div>
                                             <span style={{fontSize:"13px",  color: '#555555'}}>{item?.formatTime}</span>
                                         </div>

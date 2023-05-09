@@ -55,7 +55,7 @@ function Mychanel() {
         <div  style={{top:"130px", marginLeft:"280px"}}>
               <Image
         src={profile.thumbnail}
-        style={{ height: "18vh", width: "1050px", marginTop: "20%", top:"130px"  }}
+        style={{ height: "200px", width: "1000px", marginTop: "20%", top:"130px"  }}
         />
         <Container className="px-5 mt-4">
         <Stack direction="horizontal" className="mb-1">

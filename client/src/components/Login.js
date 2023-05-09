@@ -73,7 +73,7 @@ function Login() {
                         <Stack direction="vertical" className="d-flex flex-column justify-content-center">
                             <Image className="w-75" src={wayshub} />
                             <Card.Text className="text-white fs-5 fw-light w-75" >Join now, share your creations with another people and enjoy other creations</Card.Text>
-                            <Button  variant="primary" type="submit" style={{backgroundColor:'#FF7A00', border: 'none', width:'30%'}} className="mt-5 py-2 fw-bold fs-5 text-white">
+                            <Button  onClick={() => navigate("/Register")} variant="primary" type="submit" style={{backgroundColor:'#FF7A00', border: 'none', width:'30%'}} className="mt-5 py-2 fw-bold fs-5 text-white">
                                 Sign Up
                             </Button>
                         </Stack>

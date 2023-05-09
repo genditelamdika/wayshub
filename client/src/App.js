@@ -7,6 +7,7 @@ import Register from "./components/Register";
 import Detailvideo from "./components/Detailvideo";
 import Sidedetailvideo from "./components/Sidedetailvideo";
 import Mychanel from "./components/Mychanel";
+import Subscrebtion from "./components/Subscrebtion";
 import Editchanel from "./components/Editchanel";
 import Menbar from "./components/Menbar";
 import Home from "./components/Home";
@@ -81,6 +82,7 @@ function App() {
           <Route path="/Detailvideo/:id" element={<Detailvideo />} />
           <Route path="/Sidedetailvideo/:id" element={<Sidedetailvideo />} />
           <Route path="Mychanel" element={<Mychanel />} />
+          <Route path="Subscrebtion" element={<Subscrebtion />} />
           <Route path="/Editchanel/:id" element={<Editchanel />} />
           <Route path="/Creatorpage/:id" element={<Creatorpage />} />
 
