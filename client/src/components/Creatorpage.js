@@ -115,7 +115,7 @@ function Creatorpage(props) {
             <Card.Text className="text-white fs-3 mb-0">
               {user?.chanelname}
             </Card.Text>
-            <Card.Text style={{ color: "#F0F0F0" }}>{user?.subscriber}</Card.Text>
+            <Card.Text style={{ color: "#F0F0F0" }}>{user?.subscriber}Subscriber</Card.Text>
           </Stack>
           <div>
               <Link>

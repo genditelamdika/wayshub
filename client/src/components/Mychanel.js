@@ -68,7 +68,7 @@ function Mychanel() {
             <Card.Text className="text-white fs-3 mb-0">
               {profile.chanelname}
             </Card.Text>
-            <Card.Text style={{ color: "#F0F0F0" }}>{profile.subscriber}</Card.Text>
+            <Card.Text style={{ color: "#F0F0F0" }}>{profile.subscriber} Subscriber</Card.Text>
           </Stack>
           {/* <Link to={`/Editchanel/${profile.id}`}>
                       <button  type="buton"  className="shadow  btn btn-success fw-bold  " style={{width:"70px"}} name={profile.id} value={profile.id}>
