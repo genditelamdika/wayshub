@@ -215,7 +215,11 @@ function Detailvideo() {
            style={{width:"30px"}}
            />
            
+            {data?.chanelname}
+            <div>
             {data?.comment}
+
+            </div>
             
             
 
