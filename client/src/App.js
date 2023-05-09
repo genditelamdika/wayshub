@@ -31,7 +31,7 @@ function App() {
     if (!isLoading) {
       if (state.isLogin === true) {
         // window.location('/Film')
-        navigate('/');
+        navigate('/Register');
       }
     }
   }, [isLoading]);
